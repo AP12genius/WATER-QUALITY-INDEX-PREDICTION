@@ -1,30 +1,39 @@
 [project]
-name = "my-ml-model"
+name = "water-quality-index-prediction"
 version = "0.1.0"
-description = "Water Quality Index (WQI) prediction using a stacked ensemble (RF, XGBoost, LightGBM, SVR) and an RNN, with SHAP explainability."
+description = "Leakage-safe, one-year-ahead river Water Quality Index forecasting."
 readme = "README.md"
-requires-python = ">=3.10,<3.12"
+requires-python = ">=3.12,<3.13"
 dependencies = [
-    "numpy",
-    "pandas",
-    "scikit-learn",
-    "matplotlib",
-    "seaborn",
-    "shap",
-    "lightgbm",
-    "xgboost",
-    "tensorflow",
+    "ipykernel>=7.3.0",
+    "lightgbm>=4.6,<5",
+    "matplotlib>=3.10,<4",
+    "numba>=0.61.2,<0.62",
+    "numpy>=2.2,<2.3",
+    "pandas>=2.3,<3",
+    "scikit-learn>=1.9,<2",
+    "seaborn>=0.13,<1",
+    "shap>=0.52,<0.53",
+    "xgboost>=3.4,<4",
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
-    "pytest",
-    "jupyter",
+    "pytest>=9,<10",
+    "ruff>=0.14,<1",
+]
+rnn = [
+    "tensorflow>=2.21,<2.22",
 ]
 
 [build-system]
-requires = ["setuptools>=68.0"]
+requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools.packages.find]
-where = ["src"]
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+extend-exclude = ["main.ipynb"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
