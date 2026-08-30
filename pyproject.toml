@@ -1,0 +1,30 @@
+[project]
+name = "my-ml-model"
+version = "0.1.0"
+description = "Water Quality Index (WQI) prediction using a stacked ensemble (RF, XGBoost, LightGBM, SVR) and an RNN, with SHAP explainability."
+readme = "README.md"
+requires-python = ">=3.10,<3.12"
+dependencies = [
+    "numpy",
+    "pandas",
+    "scikit-learn",
+    "matplotlib",
+    "seaborn",
+    "shap",
+    "lightgbm",
+    "xgboost",
+    "tensorflow",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "jupyter",
+]
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
